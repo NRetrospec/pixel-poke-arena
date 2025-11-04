@@ -8,10 +8,12 @@ export interface PokemonCard {
     attack: number;
     defense: number;
     speed: number;
+    movement: number;
   };
   ability?: CardAbility;
   cost: 1 | 2 | 3; // Card point cost
   movementPoints: number;
+  owner?: 'player' | 'opponent';
 }
 
 export interface CardAbility {

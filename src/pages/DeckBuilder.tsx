@@ -95,6 +95,12 @@ const DeckBuilder = () => {
             <Save className="w-4 h-4" />
             Save Deck
           </Button>
+          <Button
+            onClick={() => navigate("/play")}
+            variant="outline"
+          >
+            Load Saved Deck
+          </Button>
         </div>
 
         {/* Pokémon Grid */}

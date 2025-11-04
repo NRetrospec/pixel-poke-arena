@@ -91,6 +91,13 @@ const MatchMenu = () => {
                   </CardContent>
                 </Card>
               ))}
+              <Card className="bg-gradient-card border-border">
+                <CardContent className="p-4 text-center">
+                  <Button onClick={() => navigate("/decks")} variant="outline" className="w-full">
+                    Build New Deck
+                  </Button>
+                </CardContent>
+              </Card>
             </div>
           )}
         </div>
