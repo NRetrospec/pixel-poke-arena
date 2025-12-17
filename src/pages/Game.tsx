@@ -7,21 +7,39 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { PokemonCard as PokemonCardType } from "@/types/pokemon";
 import { Heart } from "lucide-react";
 
+const shuffleArray = (array: any[]) => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
+
 const Game = () => {
   const location = useLocation();
   const { deck, mode, difficulty } = location.state || {};
+
+  const shuffledPlayerDeck = shuffleArray(deck?.cards || []);
+  const shuffledOpponentDeck = shuffleArray(deck?.cards || []);
 
   const [playerHP, setPlayerHP] = useState(100);
   const [opponentHP, setOpponentHP] = useState(100);
   const [currentTurn, setCurrentTurn] = useState<"player" | "opponent">("player");
   const [playerHand, setPlayerHand] = useState<PokemonCardType[]>(
-    deck?.cards.slice(0, 5) || []
+    shuffledPlayerDeck.slice(0, 5)
+  );
+  const [opponentHand, setOpponentHand] = useState<PokemonCardType[]>(
+    shuffledOpponentDeck.slice(0, 5)
+  );
+  const [playerDeck, setPlayerDeck] = useState<PokemonCardType[]>(
+    shuffledPlayerDeck.slice(5)
+  );
+  const [opponentDeck, setOpponentDeck] = useState<PokemonCardType[]>(
+    shuffledOpponentDeck.slice(5)
   );
   const [battlefield, setBattlefield] = useState<(PokemonCardType | null)[]>(
     Array(40).fill(null)
-  );
-  const [opponentHand, setOpponentHand] = useState<PokemonCardType[]>(
-    deck?.cards.slice(5, 10) || []
   );
   const [draggedCard, setDraggedCard] = useState<PokemonCardType | null>(null);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
@@ -149,6 +167,14 @@ const Game = () => {
               setOpponentHP(newOpponentHP);
               setBattlefield(newBattlefield);
               setCurrentTurnCost(0); // Reset cost for next turn
+
+              // Draw card if hand has less than 10 cards
+              if (playerHand.length < 10 && playerDeck.length > 0) {
+                const drawnCard = playerDeck[0];
+                setPlayerHand(prev => [...prev, drawnCard]);
+                setPlayerDeck(prev => prev.slice(1));
+              }
+
               setCurrentTurn("opponent");
 
               // AI Turn
@@ -203,6 +229,13 @@ const Game = () => {
                 setPlayerHP(aiPlayerHP);
                 setOpponentHP(aiOpponentHP);
                 setBattlefield(battlefieldAfterShift);
+
+                // Draw card for AI if hand has less than 10 cards
+                if (opponentHand.length < 10 && opponentDeck.length > 0) {
+                  const drawnCard = opponentDeck[0];
+                  setOpponentHand(prev => [...prev, drawnCard]);
+                  setOpponentDeck(prev => prev.slice(1));
+                }
 
                 if (opponentHand.length > 0 && mode === "local") {
                   const randomCard = opponentHand[Math.floor(Math.random() * opponentHand.length)];

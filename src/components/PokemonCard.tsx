@@ -12,10 +12,10 @@ interface PokemonCardProps {
 const PokemonCard = ({ pokemon, selected, onSelect }: PokemonCardProps) => {
   return (
     <Card
-      className={`relative overflow-hidden cursor-pointer transition-all duration-300 ${
+      className={`relative overflow-hidden cursor-pointer transition-all duration-300 pixel-pattern ${
         selected
-          ? "border-primary border-2 scale-105 shadow-glow"
-          : "border-border hover-lift hover:border-accent"
+          ? "border-primary border-2 scale-110 shadow-glow glow-strong rotate-1"
+          : "border-border hover-lift hover:border-accent hover:scale-105 hover:rotate-1 hover:glow-strong"
       } bg-gradient-card`}
       onClick={onSelect}
     >
