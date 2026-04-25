@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(npm install *)",
+      "Bash(wmic logicaldisk *)",
+      "Bash(mkdir -p \"C:\\\\Users\\\\phres\\\\OneDrive\\\\Desktop\\\\Projects\\\\pixel-poke-arena\\\\remotion\\\\scenes\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\phres\\\\OneDrive\\\\Desktop\\\\Projects\\\\pixel-poke-arena\\\\remotion\\\\components\")",
+      "Bash(xargs grep *)",
+      "Bash(python3 -c \"import sys,json; p=json.load\\(sys.stdin\\); exports=p.get\\('exports',{}\\); [print\\(k\\) for k in exports if 'press' in k.lower\\(\\) or 'Press' in k]\")",
+      "Bash(node *)",
+      "Bash(mkdir -p out)",
+      "Bash(npx remotion *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001)",
+      "Bash(npm run *)"
+    ]
+  }
+}

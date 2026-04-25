@@ -82,6 +82,46 @@ export default {
           from: { transform: "translateY(20px)", opacity: "0" },
           to: { transform: "translateY(0)", opacity: "1" },
         },
+        "vs-flash": {
+          "0%": { opacity: "0", transform: "scale(0.3) rotate(-15deg)" },
+          "60%": { opacity: "1", transform: "scale(1.3) rotate(3deg)" },
+          "100%": { opacity: "1", transform: "scale(1) rotate(0deg)" },
+        },
+        "card-enter-left": {
+          "0%": { opacity: "0", transform: "translateX(-80px) scale(0.8)" },
+          "100%": { opacity: "1", transform: "translateX(0) scale(1)" },
+        },
+        "card-enter-right": {
+          "0%": { opacity: "0", transform: "translateX(80px) scale(0.8)" },
+          "100%": { opacity: "1", transform: "translateX(0) scale(1)" },
+        },
+        "damage-pop": {
+          "0%": { opacity: "0", transform: "scale(0.4) rotate(-8deg)" },
+          "55%": { opacity: "1", transform: "scale(1.25) rotate(4deg)" },
+          "100%": { opacity: "1", transform: "scale(1) rotate(-2deg)" },
+        },
+        "victory-pulse": {
+          "0%, 100%": { filter: "brightness(1)" },
+          "50%": { filter: "brightness(1.5)" },
+        },
+        "bg-particle": {
+          "0%": { transform: "translateY(100vh) translateX(0px)", opacity: "0" },
+          "10%": { opacity: "0.6" },
+          "90%": { opacity: "0.4" },
+          "100%": { transform: "translateY(-10vh) translateX(20px)", opacity: "0" },
+        },
+        "scanline": {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(200%)" },
+        },
+        "hp-drain": {
+          "0%": { width: "100%" },
+          "100%": { width: "var(--hp-pct)" },
+        },
+        "grid-glow": {
+          "0%, 100%": { opacity: "0.3" },
+          "50%": { opacity: "0.6" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -89,6 +129,14 @@ export default {
         "float": "float 3s ease-in-out infinite",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
         "slide-up": "slide-up 0.5s ease-out",
+        "vs-flash": "vs-flash 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards",
+        "card-enter-left": "card-enter-left 0.4s ease-out forwards",
+        "card-enter-right": "card-enter-right 0.4s ease-out forwards",
+        "damage-pop": "damage-pop 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards",
+        "victory-pulse": "victory-pulse 0.8s ease-in-out infinite",
+        "bg-particle": "bg-particle 8s linear infinite",
+        "scanline": "scanline 6s linear infinite",
+        "grid-glow": "grid-glow 3s ease-in-out infinite",
       },
     },
   },

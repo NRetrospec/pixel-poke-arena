@@ -1,7 +1,10 @@
+export type AnimState = 'idle' | 'attack' | 'move' | 'hit' | 'faint';
+
 export interface PokemonCard {
   id: number;
   name: string;
   sprite: string;
+  animatedSprite?: string;
   types: string[];
   stats: {
     hp: number;

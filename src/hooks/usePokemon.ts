@@ -25,6 +25,7 @@ const fetchPokemonList = async (): Promise<PokemonCard[]> => {
       attack: details.stats.find((s: any) => s.stat.name === "attack")?.base_stat || 50,
       defense: details.stats.find((s: any) => s.stat.name === "defense")?.base_stat || 50,
       speed: details.stats.find((s: any) => s.stat.name === "speed")?.base_stat || 50,
+      movement: Math.floor(Math.random() * 3) + 1,
     };
     
     // Randomly assign cost and movement
@@ -40,6 +41,7 @@ const fetchPokemonList = async (): Promise<PokemonCard[]> => {
       id: details.id,
       name: details.name,
       sprite: details.sprites.front_default,
+      animatedSprite: details.sprites.versions?.['generation-v']?.['black-white']?.animated?.front_default ?? undefined,
       types: details.types.map((t: any) => t.type.name),
       stats,
       ability,
